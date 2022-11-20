@@ -1,18 +1,37 @@
 import { galleryItems } from './gallery-items.js';
-// Change code below this line
-// const instance = basicLightbox.create(`
-//     <img src="https://cdn.pixabay.com/photo/2019/05/14/16/43/himilayan-blue-poppy-4202825_1280.jpg" width="800" height="600">
-// `)
-// instance.show()
-
-const galleryItemsContainer = document.querySelector('.galleryItems');
-
-galleryItems.forEach((item) => {
-    const imgEl = document.createElement('img');
-    imgEl.src = item.src;
-    imgEl.alt = item.title;
-
-    galleryItemsContainer.append(imgEl)
-})
 
 console.log(galleryItems);
+
+const galleryRef = document.querySelector(".gallery");
+
+function createMarkup(galleryItems) {
+    return galleryItems
+        .map(
+            ({ preview, original, description }) =>
+                `<div class="gallery__item"><a class="gallery__link" href="${original}"><img class="gallery__image"  src="${preview}" data-source="${original}" alt="${description}"/></a></div>`
+              
+        )
+        .join('');
+}   
+
+const markup = createMarkup(galleryItems);
+galleryRef.insertAdjacentHTML("beforeend", markup);
+
+
+const Container = document.querySelector('.gallery');
+Container.addEventListener('click', onclick);
+function onclick(evt) {
+    evt.preventDefault()
+    const instance = basicLightbox.create(
+        evt.target.dataset.source
+    );
+    instance.show();
+
+    if (evt.target.nodeName !== 'IMG') {
+        return;
+    };
+
+    console.log(evt.target.dataset.source);
+}
+
+
