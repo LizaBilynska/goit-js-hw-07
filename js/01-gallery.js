@@ -21,15 +21,15 @@ galleryRef.insertAdjacentHTML("beforeend", markup);
 const Container = document.querySelector('.gallery');
 Container.addEventListener('click', onclick);
 function onclick(evt) {
-    evt.preventDefault()
-    const instance = basicLightbox.create(
-        evt.target.dataset.source
-    );
-    instance.show();
-
     if (evt.target.nodeName !== 'IMG') {
         return;
     };
+    evt.preventDefault()
+    const instance = basicLightbox.create(
+        `<img src="${evt.target.dataset.source}"></img>`
+        
+    );
+    instance.show();
 
     console.log(evt.target.dataset.source);
 }
