@@ -18,8 +18,8 @@ const markup = createMarkup(galleryItems);
 galleryRef.insertAdjacentHTML("beforeend", markup);
 
 
-const Container = document.querySelector('.gallery');
-Container.addEventListener('click', onclick);
+const container = document.querySelector('.gallery');
+container.addEventListener('click', onclick);
 function onclick(evt) {
     if (evt.target.nodeName !== 'IMG') {
         return;
