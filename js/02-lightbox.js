@@ -19,16 +19,8 @@ galleryRef.insertAdjacentHTML("beforeend", markup);
 
 
 const container = document.querySelector('.gallery');
-container.addEventListener('click', onclick);
-function onclick(evt) {
-    if (evt.target.nodeName !== 'IMG') {
-        return;
-    };
 
-    evt.preventDefault()
-    
-    let lightbox = new SimpleLightbox('.gallery a', { captionDelay: 250, captionsData: "alt" });
-    lightbox.show()
-}
+    new SimpleLightbox('.gallery a', { captionDelay: 250, captionsData: "alt" });
+
 // import * as basicLightbox from 'basiclightbox'
 
